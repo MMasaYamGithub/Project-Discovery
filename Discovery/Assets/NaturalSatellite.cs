@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoonTest : MonoBehaviour {
+public class NaturalSatellite : MonoBehaviour {
 	
 	public Transform target;
 	public float RotationSpeed = 100f;

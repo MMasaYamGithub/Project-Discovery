@@ -46,8 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MoonTest.cs" />
-     <Compile Include="Assets\PlanetTest.cs" />
+     <Compile Include="Assets\NaturalSatellite.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\EventSystemChecker.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
      <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
