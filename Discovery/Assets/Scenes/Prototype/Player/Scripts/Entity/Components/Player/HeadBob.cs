@@ -1,20 +1,23 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityStandardAssets.Utility;
 
-namespace UnityStandardAssets.Characters.FirstPerson
+
+// Edited version of Standard Asset Headbob
+namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Player
 {
     public class HeadBob : MonoBehaviour
     {
         public Camera Camera;
         public CurveControlledBob motionBob = new CurveControlledBob();
         public LerpControlledBob jumpAndLandingBob = new LerpControlledBob();
-        public RigidbodyFirstPersonController rigidbodyFirstPersonController;
+        public PlayerController playerController;
         public float StrideInterval;
-        [Range(0f, 1f)] public float RunningStrideLengthen;
+        [Range(0f, 1f)]
+        public float RunningStrideLengthen;
         public float zOffset = 0;
 
-       // private CameraRefocus m_CameraRefocus;
+        // private CameraRefocus m_CameraRefocus;
         private bool m_PreviouslyGrounded;
         private Vector3 m_OriginalCameraPosition;
 
@@ -23,17 +26,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             motionBob.Setup(Camera, StrideInterval);
             m_OriginalCameraPosition = Camera.transform.localPosition;
-       //     m_CameraRefocus = new CameraRefocus(Camera, transform.root.transform, Camera.transform.localPosition);
+            //     m_CameraRefocus = new CameraRefocus(Camera, transform.root.transform, Camera.transform.localPosition);
         }
 
 
         private void Update()
         {
-          //  m_CameraRefocus.GetFocusPoint();
+            //  m_CameraRefocus.GetFocusPoint();
             Vector3 newCameraPosition;
-            if (rigidbodyFirstPersonController.Velocity.magnitude > 0 && rigidbodyFirstPersonController.Grounded)
+            if (playerController.Velocity.magnitude > 0 && playerController.Grounded)
             {
-                Camera.transform.localPosition = motionBob.DoHeadBob(rigidbodyFirstPersonController.Velocity.magnitude*(rigidbodyFirstPersonController.Running ? RunningStrideLengthen : 1f));
+                Camera.transform.localPosition = motionBob.DoHeadBob(playerController.Velocity.magnitude * (playerController.Running ? RunningStrideLengthen : 1f));
                 newCameraPosition = Camera.transform.localPosition;
                 newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();
                 newCameraPosition.z += zOffset;
@@ -45,13 +48,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             Camera.transform.localPosition = newCameraPosition;
 
-            if (!m_PreviouslyGrounded && rigidbodyFirstPersonController.Grounded)
+            if (!m_PreviouslyGrounded && playerController.Grounded)
             {
                 StartCoroutine(jumpAndLandingBob.DoBobCycle());
             }
 
-            m_PreviouslyGrounded = rigidbodyFirstPersonController.Grounded;
-          //  m_CameraRefocus.SetFocusPoint();
+            m_PreviouslyGrounded = playerController.Grounded;
+            //  m_CameraRefocus.SetFocusPoint();
         }
     }
 }

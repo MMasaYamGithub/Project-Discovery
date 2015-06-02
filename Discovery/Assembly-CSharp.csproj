@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactables\Interactable.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactors\Interactor.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactors\PlayerInteractor.cs" />
+     <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Player\HeadBob.cs" />
+     <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Player\PlayerController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

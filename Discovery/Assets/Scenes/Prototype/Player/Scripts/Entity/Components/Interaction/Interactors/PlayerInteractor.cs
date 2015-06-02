@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using DefinitiveStudios.Discovery.Prototype.Entity.Components.Interaction.Interactables;
+using DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interaction.Interactables;
 
 
-namespace DefinitiveStudios.Discovery.Prototype.Entity.Components.Interaction.Interactors {
+namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interaction.Interactors {
 
     public class PlayerInteractor : Interactor {
 
