@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interaction.Interactors { 
 
-    public class Interactor : MonoBehaviour {
+    public abstract class Interactor : MonoBehaviour {
 
         public float maxDistance = 2;
         public Text txtInteract; // TODO Full Implementation: Change to MVC 
@@ -21,7 +21,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
 	        if (Physics.Raycast(transform.position, direction, out hit, maxDistance)) {
 	            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 if (interactable != null) {
-	                txtInteract.text = "E to Interact"; // TODO Full Implementation: Get mapped key
+	                txtInteract.text = "E to Interact with "+interactable.objectName; // TODO Full Implementation: Get mapped key
 	                if (Input.GetKeyDown(KeyCode.E)) {
                         // TODO Full Implementation: Switch to Observerable Input Mapper
                         Interact(interactable);
@@ -35,7 +35,8 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
         /// </summary>
         /// <param name="target"></param>
         protected virtual void Interact(Interactable target) {
-            target.Interact(transform.parent.gameObject); // TODO Full Implementation: Set root GameObject
+            Enable(false);
+            target.Interact(transform.root.gameObject);
             currInteractable = target.gameObject;
         }
 
@@ -43,7 +44,16 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
         /// Exits interacting with the current Interactable.
         /// </summary>
         public virtual void Exit() {
+            Enable(true);
+            transform.root.position = currInteractable.transform.root.position;
             currInteractable = null;
         }
+
+        /// <summary>
+        /// Called when interaction starts/ends.
+        /// </summary>
+        /// <param name="enable">true if interaction has ended (object being re-enabled), otherwise false</param>
+        protected abstract void Enable(bool enable);
+
     }
 }

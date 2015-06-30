@@ -15,10 +15,8 @@ namespace DefinitiveStudios.Discovery.Core.Utils {
         /// <returns>Component of type T or null if none found</returns>
         static public T GetComponentInChildren<T>(GameObject obj) where T : Component {
             var component = obj.GetComponent<T>();
-            System.Console.WriteLine(component);
             if (component == null) {
                 Transform root = obj.transform;
-
                 for (var i = 0; i < root.childCount; i++) {
                     component = GetComponentInChildren<T>(root.GetChild(i).gameObject);
                     if (component != null) break;

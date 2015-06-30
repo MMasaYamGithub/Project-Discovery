@@ -7,22 +7,9 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
 
     public class PlayerInteractor : Interactor {
 
-
-        protected override void Interact(Interactable target) {
-            Enable(false);
-            base.Interact(target);
-        }
-
-        public override void Exit() {
-            Enable(true);
-            base.Exit();
-        }
-
-        private void Enable(bool enable) {
+        protected override void Enable(bool enable) {
             GetComponent<Camera>().enabled = enable;
             transform.parent.gameObject.SetActive(enable);
         }
-
     }
-
 }
