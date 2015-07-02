@@ -12,30 +12,14 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
 
         public CockpitInteractable() : base("Cockpit") {}
 
-        public override void Update() {
-            if (currInteractor == null) return;
-
-            applyAxis(Axis.X);
-            applyAxis(Axis.Y);
-            applyAxis(Axis.Z);
-            applyAxis(Axis.Roll);
-            applyAxis(Axis.Pitch);
-            applyAxis(Axis.Yaw);
-            base.Update();
-        }
-
         protected override void Enable(bool enable) {
             Cursor.visible = enable;
             GetComponentInChildren<Camera>().enabled = enable;
             GetComponentInChildren<Mouselook>().enabled = enable;
+            GetComponent<ShipController>().active = enable;
         }
 
-        private void applyAxis(Axis axis) {
-            string axisName = "Thrust" + axis;
-            if (!Input.GetAxis(axisName).Equals(0)) {
-                EventSystem.ApplyThrust(axis, Input.GetAxis(axisName) * 0.05f);
-            }
-        }
+        
 
     }
 }

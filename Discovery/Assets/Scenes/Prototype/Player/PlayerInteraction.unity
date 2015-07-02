@@ -188,7 +188,7 @@ Light:
   m_Type: 2
   m_Color: {r: .904411793, g: .964401662, b: 1, a: 1}
   m_Intensity: .349999994
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -459,9 +459,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 198003205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a6f52d8f0c1e044a0fac469b9ba63e, type: 3}
+  m_Script: {fileID: 11500000, guid: a6c05d62e36411c4a8ff431bde2cc8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
 --- !u!54 &198003213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -655,7 +656,7 @@ Light:
   m_Type: 2
   m_Color: {r: .904411793, g: .964401662, b: 1, a: 1}
   m_Intensity: .349999994
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1508,7 +1509,7 @@ Light:
   m_Type: 2
   m_Color: {r: .904411793, g: .964401662, b: 1, a: 1}
   m_Intensity: .349999994
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1693,6 +1694,10 @@ Prefab:
     - target: {fileID: 400000, guid: ab33e6080ae416b4d899f39fa8951b98, type: 2}
       propertyPath: m_LocalScale.z
       value: .393066883
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ab33e6080ae416b4d899f39fa8951b98, type: 2}
+      propertyPath: m_Name
+      value: Block
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab33e6080ae416b4d899f39fa8951b98, type: 2}
