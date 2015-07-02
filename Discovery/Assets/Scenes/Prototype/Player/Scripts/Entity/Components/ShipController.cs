@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
@@ -105,7 +106,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         private void ApplyAxis(Axis axis) {
             // TODO: Option to toggle joystick
             string axisName = "Thrust" + axis;
-            EventSystem.ApplyThrust(axis, Input.GetAxis(axisName+"btn") * 0.05f);
+            EventSystem.IncrementThrust(axis, Input.GetAxis(axisName+"btn") * 0.05f);
             if (!Input.GetJoystickNames()[0].Equals("")) {
                 EventSystem.SetThrust(axis, Input.GetAxis(axisName));
             }

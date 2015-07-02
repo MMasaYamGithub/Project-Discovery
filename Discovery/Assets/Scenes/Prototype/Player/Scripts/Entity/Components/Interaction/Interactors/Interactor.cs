@@ -24,6 +24,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
 	                txtInteract.text = "F to Interact with "+interactable.objectName; // TODO Full Implementation: Get mapped key
 	                if (Input.GetKeyDown(KeyCode.F)) {
                         // TODO Full Implementation: Switch to Observerable Input Mapper
+	                    txtInteract.text = "";
                         Interact(interactable);
                     }
                 }

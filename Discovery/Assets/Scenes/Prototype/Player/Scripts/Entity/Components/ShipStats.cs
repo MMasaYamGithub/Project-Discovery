@@ -18,26 +18,22 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         public float thrustPitch { get; private set; }
 
 
-        public ShipStats() {
-        }
-
-
         void OnEnable() {
-            EventSystem.OnThrustChanged += ApplyThrust;
+            EventSystem.OnThrustIncremented += IncrementThrust;
             EventSystem.OnThrustSet += SetThrust;
         }
 
         void OnDisable() {
-            EventSystem.OnThrustChanged -= ApplyThrust;
+            EventSystem.OnThrustIncremented -= IncrementThrust;
             EventSystem.OnThrustSet -= SetThrust;
         }
 
         /// <summary>
-        /// Adds the thrust percentage to the current thrust percentage
+        /// Increments the current percentage by the percentage value
         /// </summary>
         /// <param name="axis">Axis to change</param>
         /// <param name="value">Percentage value to add (-1 - 1)</param>
-        public void ApplyThrust(Axis axis, float value) {
+        public void IncrementThrust(Axis axis, float value) {
             ChangeThrust(axis, value, false);
         }
 
@@ -87,6 +83,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
 
             }
             if (!stickTag.Equals("")) GameObject.FindWithTag(stickTag).transform.localEulerAngles = new Vector3(-56 * thrust, 0, 0);
+            EventSystem.UpdateThrust(axis, thrust);
         }
 
     }

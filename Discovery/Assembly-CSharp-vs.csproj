@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Player\PlayerController.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\ShipController.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\ShipStats.cs" />
+     <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\UI\Views\ThrustView.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
