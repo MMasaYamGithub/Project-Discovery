@@ -463,6 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  flightAssist: 1
+  assistDeadZone: .0500000007
 --- !u!54 &198003213
 Rigidbody:
   m_ObjectHideFlags: 0
