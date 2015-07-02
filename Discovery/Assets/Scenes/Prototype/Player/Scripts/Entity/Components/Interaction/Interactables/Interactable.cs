@@ -21,7 +21,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
             if (currInteractor == null) return;
 
             // TODO Full Implementation: Switch to Observerable Input Mapper
-            if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.GetKeyDown(KeyCode.F)) {
                 Exit();
             }
         }

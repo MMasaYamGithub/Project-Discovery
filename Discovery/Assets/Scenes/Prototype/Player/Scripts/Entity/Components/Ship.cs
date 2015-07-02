@@ -17,7 +17,12 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         }
 
         void Update() {
-            body.AddForce(0, 0, 10 * stats.zThrust);
+            body.AddRelativeForce(Vector3.left * 10 * stats.thrustX);
+            body.AddRelativeForce(Vector3.up * 10 * stats.thrustY);
+            body.AddRelativeForce(-Vector3.forward * 10 * stats.thrustZ); // Models need to be facing forward, my prototype isn't
+            body.AddTorque(-Vector3.forward * 10 * stats.thrustRoll);  // Models need to be facing forward, my prototype isn't
+            body.AddTorque(Vector3.left * 10 * stats.thrustPitch);
+            body.AddTorque(Vector3.up * 10 * stats.thrustYaw);
         }
 
     }

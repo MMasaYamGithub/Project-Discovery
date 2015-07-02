@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ThrustStick
+  - ThrustStickZ
+  - ThrustStickY
+  - ThrustStickX
+  - ThrustStickRoll
+  - ThrustStickYaw
+  - ThrustStickPitch
   layers:
   - Default
   - TransparentFX

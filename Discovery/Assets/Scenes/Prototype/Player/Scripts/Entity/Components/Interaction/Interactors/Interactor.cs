@@ -21,8 +21,8 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
 	        if (Physics.Raycast(transform.position, direction, out hit, maxDistance)) {
 	            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 if (interactable != null) {
-	                txtInteract.text = "E to Interact with "+interactable.objectName; // TODO Full Implementation: Get mapped key
-	                if (Input.GetKeyDown(KeyCode.E)) {
+	                txtInteract.text = "F to Interact with "+interactable.objectName; // TODO Full Implementation: Get mapped key
+	                if (Input.GetKeyDown(KeyCode.F)) {
                         // TODO Full Implementation: Switch to Observerable Input Mapper
                         Interact(interactable);
                     }

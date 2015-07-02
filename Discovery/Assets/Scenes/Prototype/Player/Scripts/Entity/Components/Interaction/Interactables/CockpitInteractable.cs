@@ -15,9 +15,12 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
         public override void Update() {
             if (currInteractor == null) return;
 
-            if (!Input.GetAxis("Thrust").Equals(0)) {
-                EventSystem.ApplyThrust(Input.GetAxis("Thrust") * 0.05f);
-            }
+            applyAxis(Axis.X);
+            applyAxis(Axis.Y);
+            applyAxis(Axis.Z);
+            applyAxis(Axis.Roll);
+            applyAxis(Axis.Pitch);
+            applyAxis(Axis.Yaw);
             base.Update();
         }
 
@@ -25,6 +28,13 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Interac
             Cursor.visible = enable;
             GetComponentInChildren<Camera>().enabled = enable;
             GetComponentInChildren<Mouselook>().enabled = enable;
+        }
+
+        private void applyAxis(Axis axis) {
+            string axisName = "Thrust" + axis;
+            if (!Input.GetAxis(axisName).Equals(0)) {
+                EventSystem.ApplyThrust(axis, Input.GetAxis(axisName) * 0.05f);
+            }
         }
 
     }
