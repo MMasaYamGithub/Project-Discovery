@@ -50,6 +50,7 @@
      <Compile Include="Assets\Core\Scripts\Entity\Components\Camera\Mouselook.cs" />
      <Compile Include="Assets\Core\Scripts\Util\Utils.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\EventSystem.cs" />
+     <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\GravitationalField.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactables\CockpitInteractable.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactables\Interactable.cs" />
      <Compile Include="Assets\Scenes\Prototype\Player\Scripts\Entity\Components\Interaction\Interactors\Interactor.cs" />

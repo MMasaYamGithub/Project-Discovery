@@ -22,8 +22,20 @@ namespace DefinitiveStudios.Discovery.Core.Utils {
                     if (component != null) break;
                 }
             }
-
             return component;
+        }
+
+        /// <summary>
+        /// Returns the normal of a mesh's first triangle. Useful for getting the normal of a plane.
+        /// </summary>
+        /// <param name="mesh">Mesh to use</param>
+        /// <returns>Normal of first triangle</returns>
+        static public Vector3 GetNormal(Mesh mesh) {
+            Vector3 side1 = mesh.vertices[mesh.triangles[1]] - mesh.vertices[mesh.triangles[0]];
+            Vector3 side2 = mesh.vertices[mesh.triangles[2]] - mesh.vertices[mesh.triangles[0]];
+            Vector3 normal = Vector3.Cross(side1, side2);
+            //normal /= normal.magnitude;
+            return normal;
         }
     }
 
