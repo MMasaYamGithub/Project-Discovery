@@ -139,20 +139,6 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Player 
 
 
         private void FixedUpdate() {
-            // Gravity test
-            // Simple sphere (e.g planet) gravity
-            //rigidBody.AddForce(GameObject.FindWithTag("Finish").transform.position - transform.position);
-
-            // Gravity based on plane normal(e.g spaceship floor)
-            //GameObject gravObject = GameObject.FindWithTag("Finish");
-            //Mesh mesh = gravObject.GetComponent<MeshFilter>().mesh;
-            //Vector3 side1 = mesh.vertices[mesh.triangles[1]] - mesh.vertices[mesh.triangles[0]];
-            //Vector3 side2 = mesh.vertices[mesh.triangles[2]] - mesh.vertices[mesh.triangles[0]];
-            //Vector3 normal = Vector3.Cross(side1, side2);
-            //normal /= normal.magnitude;
-            //bool gravObjectBelow = Vector3.Dot(transform.position, gravObject.transform.position) > 0;
-            //rigidBody.AddForce(((gravObjectBelow)? -normal : normal) * 20);
-            // 
             GroundCheck();
             Vector2 input = GetInput();
 
@@ -235,7 +221,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Player 
 
             if (isGrounded || advancedSettings.airControl) {
                 // Rotate the rigidbody velocity to match the new direction that the character is looking
-                Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
+                Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, rigidBody.transform.up);
                 rigidBody.velocity = velRotation * rigidBody.velocity;
 
                 // Get a smoothed rotation difference to animate turning. Animator turn range is -1 to 1, hence the smoothing and clamping. 
@@ -255,7 +241,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components.Player 
             }
             else {
                 isGrounded = false;
-                groundContactNormal = Vector3.up;
+                groundContactNormal = rigidBody.transform.up;
             }
             if (!previouslyGrounded && isGrounded && jumping) {
                 jumping = false;

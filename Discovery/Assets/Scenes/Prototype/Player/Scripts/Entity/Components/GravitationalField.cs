@@ -8,7 +8,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
 
     /// <summary>
     /// Component for simulating gravitational fields. The collider is the max gravitational field range and will be set to be a trigger.
-    /// Works with planes and spheres.
+    /// Works with most 3D objects.
     /// TODO: Use simple normal calculation for spheres (transform.position - target.transform.position)
     /// TODO: Multiply gravity based on distance from origin
     /// </summary>
@@ -26,6 +26,8 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         private Vector3 gravVector;
         private Mesh mesh;
         private bool isSphere;
+        private bool flipNormal;
+        private RaycastHit hit;
 
 
         private void Start() {
@@ -41,15 +43,20 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
                 prevRotation = currRotation;
                 currPosition = transform.position;
                 currRotation = transform.rotation;
-                if (currPosition != prevPosition || currRotation != prevRotation) gravVector = Utils.GetNormal(mesh);
+                if (!currPosition.Equals(prevPosition) || !currRotation.Equals(prevRotation)) gravVector = Utils.GetNormal(mesh);
             }
             foreach (Rigidbody body in contactBodies) {
-                if (isSphere) gravVector = (transform.position - body.transform.position).normalized;
-                else {
-                    // Reverse the normal if the target is below the plane
-                    gravVector = (Vector3.Dot(transform.position, body.transform.position) > 0)? -gravVector : gravVector;
+                //if (isSphere) gravVector = (transform.position - body.transform.position).normalized;
+                //else {
+                //    // Reverse the normal if the target is below the mesh
+                //    flipNormal = (Vector3.Dot(Vector3.up, body.transform.position - transform.position) < 0);
+                //}
+                //body.AddForce(((flipNormal)? gravVector : -gravVector) * gravity);
+                if (Physics.Raycast(body.position, transform.position - body.position, out hit, Vector3.Distance(transform.position, body.position), 1 << 8)) {
+                    Debug.DrawRay(body.position, transform.position - body.position);
+                    body.rotation = Quaternion.Slerp(body.rotation, Quaternion.FromToRotation(Vector3.up, hit.normal), Time.fixedDeltaTime * 5);
+                    body.AddForce(-hit.normal * gravity); // TODO: SCale gravity based on distance from center
                 }
-                body.AddForce(gravVector * gravity);
             }
         }
 
