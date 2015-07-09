@@ -5,6 +5,9 @@ using System.Collections;
 
 namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
 
+    /// <author>
+    ///  Andy Palmer (ALPSquid)
+    /// </author>
     /// <summary>
     /// Holds and updates ship stats
     /// </summary>

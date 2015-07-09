@@ -10,6 +10,9 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         X, Y, Z, Roll, Yaw, Pitch
     }
 
+    /// <author>
+    ///  Andy Palmer (ALPSquid)
+    /// </author>
     /// <summary>
     /// Controls ship functionality including reacting to stats
     /// </summary>

@@ -7,6 +7,9 @@ using DefinitiveStudios.Discovery.Core.Utils;
 
 namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
 
+    /// <author>
+    ///  Andy Palmer (ALPSquid)
+    /// </author>
     /// <summary>
     /// Component for simulating gravitational fields. The collider is the max gravitational field range and will be set to be a trigger.
     /// Works with most (all?) 3D objects.
@@ -18,7 +21,7 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         private const float EARTH_RADIUS = 6371f;
         private const float EARTH_SURFACE_GRAVITY = 9.8f;
 
-        public float surfaceGravity = 9.8f;
+        public float surfaceGravity = EARTH_SURFACE_GRAVITY;
         public float massMultiple = 1;  // Mass in relation to Earth
         public float radiusMultiple = 1;  // Radius in relation to Earth
         public bool useRelationalValues = true;  // Whether to calculate surface gravity and max gravitational distance based on the above relational values.
@@ -42,7 +45,8 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
             mass = EARTH_MASS * massMultiple;
             radius = EARTH_RADIUS * radiusMultiple;
             if (useRelationalValues) {
-                surfaceGravity = ((6.674f * mass) / (radius * radius)) * 10; // TODO: Fix calculation error, numbers are too small and messing up distance calculations
+                //surfaceGravity = 9.8f;
+
                 // Set max field distance to something realistic
                 // TODO: This might actually affect gameplay in a negative way (things apparently moving on their own due to a distant planet)
                 //float gravityThresholdMultiplier = (gravityThreshold * gravityThreshold) * 10000; // Distance required to reach a gravitational force of 0.5
@@ -73,7 +77,9 @@ namespace DefinitiveStudios.Discovery.Prototype.Player.Entity.Components {
         }
 
         protected float GetGravityAt(float distance) {
-            return (surfaceGravity * Mathf.Pow(radius / (radius + distance), 2));
+            // K = Distance from center / Radius
+            // force = surface gravity * (1/K^2)
+            return (float)(surfaceGravity * (1 / Math.Pow((distance+radius) / radius, 2)));
         }
 
         protected void OnTriggerEnter(Collider other) {
